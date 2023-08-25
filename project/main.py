@@ -658,5 +658,5 @@ async def recipe(ctx, *, name=None):
 
 
 
-bot.run('MTEzODIzMTk2ODg1MzY2Nzg2MA.GGvuUu.Jyxrp90h6dYwMzPswmNPiKkx2RfjjJ71GYk71k')
-
+bot.run('Token')
+# :)
