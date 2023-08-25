@@ -1,4 +1,0 @@
-discord.py
-pytube
-Pillow
-asyncio
