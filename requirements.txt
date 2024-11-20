@@ -1,0 +1,7 @@
+discord.py
+pytube
+Pillow
+asyncio
+PyNaCl
+pytubefix
+requests
