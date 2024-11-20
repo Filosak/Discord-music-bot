@@ -1,9 +1,7 @@
 import discord
 import asyncio
 import time
-import datetime
 import threading
-import requests
 import json
 import os
 import io
@@ -101,9 +99,6 @@ loadedSongs = {}
 preload = 5
 def downloadSong():
     while (True):
-        print("Loading data from website")
-        load()
-
         if (len(que.arr) == 0):
             time.sleep(1.0)
             continue
@@ -126,29 +121,11 @@ donwloadThread.start()
 def Get_source():
     while (not que.index in loadedSongs):
         print("waiting for song to download")
-        time.sleep(2)
+        time.sleep(0.5)
 
     name = loadedSongs[que.index]
     source = discord.FFmpegPCMAudio(f"{name}", executable="ffmpeg-7.1-essentials_build/bin/ffmpeg.exe")
     return source
-
-def load():
-    data = requests.get('http://localhost:8080/getSongsLinks').json()
-
-    if (not data["links"]):
-        return
-
-    for i in range(0, data["size"]):
-        print(data)
-        yt = YouTube(data["links"][f"{i}"]["link"])
-        print(que.add(yt))
-
-        toSend = {
-            "name": yt.title,
-            "lenght": str(datetime.timedelta(seconds=yt.length))
-        }
-
-        requests.post("http://localhost:8080/postSongs?", json=toSend)
 
 
 @bot.command(
@@ -728,8 +705,6 @@ async def ignore(ctx, *, name):
         return
     
     ignored.append(name)
-
-
 
 
 
